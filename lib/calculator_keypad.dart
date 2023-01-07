@@ -71,11 +71,11 @@ class CalculatorKeypad extends StatelessWidget {
                   onPressed: () => onInput('0'),
                   label: '0',
                 ),
-                CalculatorButton.number(
+                CalculatorButton.operator(
                   onPressed: () => onInput('.'),
                   label: '.',
                 ),
-                CalculatorButton.number(
+                CalculatorButton.operator(
                   onPressed: () => onInput('-'),
                   label: '-',
                 ),
