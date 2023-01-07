@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:yaru_icons/yaru_icons.dart';
-import 'package:yaru_widgets/yaru_widgets.dart';
 
 import 'calculation.dart';
+import 'calculator_keypad.dart';
 import 'calculator_model.dart';
 
 class CalculatorPage extends StatefulWidget {
@@ -67,6 +66,26 @@ class _CalculatorPageState extends State<CalculatorPage> {
     return pattern.format(number);
   }
 
+  void insertText(String text) {
+    var content = _controller.text;
+    var selection = _controller.selection;
+
+    void insertAt(int start, String text) {
+      content = content.replaceRange(start, start, text);
+      selection = TextSelection.collapsed(offset: start + text.length);
+    }
+
+    void removeRange(int start, int end) {
+      content = content.replaceRange(start, end, '');
+      selection = TextSelection.collapsed(offset: start);
+    }
+
+    removeRange(selection.start, selection.end);
+    insertAt(selection.start, text);
+
+    _controller.value = TextEditingValue(text: content, selection: selection);
+  }
+
   void selectCalculation(Calculation calculation) {
     _controller.value = TextEditingValue(
       text: calculation.input,
@@ -97,25 +116,50 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   title: Text(calculation.input),
                   trailing: Text(
                     formatResult(calculation.result),
-                    style: Theme.of(context).textTheme.headline6!,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   onTap: () => selectCalculation(calculation),
                 );
               },
             ),
           ),
-          TextField(
-            autofocus: true,
-            controller: _controller,
-            focusNode: _focusNode,
-            decoration: InputDecoration(
-              hintText: history.isEmpty ? 'x = 1 + 1' : null,
-              suffixIcon: YaruIconButton(
-                onPressed: resetCalculator,
-                icon: const Icon(YaruIcons.edit_clear),
+          IntrinsicHeight(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 2, right: 2),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.all(2),
+                      child: TextField(
+                        autofocus: true,
+                        controller: _controller,
+                        focusNode: _focusNode,
+                        decoration: InputDecoration(
+                          hintText: history.isEmpty ? 'x = 1 + 1' : null,
+                        ),
+                        onSubmitted: calculate,
+                      ),
+                    ),
+                  ),
+                  CalculatorButton.operator(
+                    onPressed: resetCalculator,
+                    label: 'C',
+                  ),
+                ],
               ),
             ),
-            onSubmitted: calculate,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 2, right: 2, bottom: 2),
+              child: CalculatorKeypad(
+                onInput: insertText,
+                onDone: () => calculate(_controller.text),
+              ),
+            ),
           ),
         ],
       ),
