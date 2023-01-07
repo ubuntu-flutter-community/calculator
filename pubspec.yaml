@@ -1,0 +1,28 @@
+name: calculator
+publish_to: 'none'
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+
+dependencies:
+  collection: ^1.16.0
+  flutter:
+    sdk: flutter
+  intl: ^0.17.0
+  math_expressions:
+    git:
+      url: https://github.com/jpnurmi/math-expressions.git
+      ref: unary-plus
+  meta: ^1.8.0
+  provider: ^6.0.5
+  yaru: ^0.4.6
+  yaru_icons: ^1.0.1
+  yaru_widgets: ^2.0.0-0
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
