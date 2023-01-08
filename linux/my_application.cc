@@ -42,6 +42,7 @@ static void my_application_activate(GApplication* application) {
     gtk_widget_show(GTK_WIDGET(header_bar));
     gtk_header_bar_set_title(header_bar, "Calculator");
     gtk_header_bar_set_show_close_button(header_bar, TRUE);
+    gtk_header_bar_set_decoration_layout(header_bar, ":close");
     gtk_window_set_titlebar(window, GTK_WIDGET(header_bar));
   } else {
     gtk_window_set_title(window, "Calculator");
