@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   handy_window: ^0.2.0
-  intl: ^0.17.0
+  intl: ^0.18.0
   math_expressions:
     git:
       url: https://github.com/jpnurmi/math-expressions.git
