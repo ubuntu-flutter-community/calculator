@@ -3,7 +3,7 @@ import 'package:math_expressions/math_expressions.dart';
 
 import 'calculation.dart';
 
-class CalculatorModel extends ChangeNotifier {
+class Calculator extends ChangeNotifier {
   var _context = ContextModel();
   final _history = <Calculation>[];
 

@@ -4,14 +4,14 @@ import 'package:provider/provider.dart';
 
 import 'calculation.dart';
 import 'calculator_keypad.dart';
-import 'calculator_model.dart';
+import 'calculator.dart';
 
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({super.key});
 
   static Widget create(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => CalculatorModel(),
+      create: (_) => Calculator(),
       child: const CalculatorPage(),
     );
   }
@@ -32,9 +32,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
   }
 
   void calculate(String input) {
-    final model = context.read<CalculatorModel>();
+    final calculator = context.read<Calculator>();
     try {
-      final result = formatResult(model.calculate(input));
+      final result = formatResult(calculator.calculate(input));
       _controller.value = TextEditingValue(
         text: result,
         selection: TextSelection.collapsed(offset: result.length),
@@ -97,12 +97,12 @@ class _CalculatorPageState extends State<CalculatorPage> {
   void resetCalculator() {
     _controller.clear();
     _focusNode.requestFocus();
-    context.read<CalculatorModel>().clear();
+    context.read<Calculator>().clear();
   }
 
   @override
   Widget build(BuildContext context) {
-    final history = context.select((CalculatorModel m) => m.history);
+    final history = context.select((Calculator m) => m.history);
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
