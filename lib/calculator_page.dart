@@ -54,23 +54,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
   }
 
   void insertText(String text) {
-    var content = _controller.text;
-    var selection = _controller.selection;
-
-    void insertAt(int start, String text) {
-      content = content.replaceRange(start, start, text);
-      selection = TextSelection.collapsed(offset: start + text.length);
-    }
-
-    void removeRange(int start, int end) {
-      content = content.replaceRange(start, end, '');
-      selection = TextSelection.collapsed(offset: start);
-    }
-
-    removeRange(selection.start, selection.end);
-    insertAt(selection.start, text);
-
-    _controller.value = TextEditingValue(text: content, selection: selection);
+    _controller.value = _controller.value.replaced(_controller.selection, text);
   }
 
   void selectCalculation(Calculation calculation) {
