@@ -9,13 +9,6 @@ import 'calculator.dart';
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({super.key});
 
-  static Widget create(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => Calculator(),
-      child: const CalculatorPage(),
-    );
-  }
-
   @override
   State<CalculatorPage> createState() => _CalculatorPageState();
 }
