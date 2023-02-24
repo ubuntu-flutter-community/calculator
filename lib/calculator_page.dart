@@ -34,18 +34,12 @@ class _CalculatorPageState extends State<CalculatorPage> {
       );
     } catch (e) {
       final messenger = ScaffoldMessenger.of(context);
-      messenger.hideCurrentMaterialBanner();
-      messenger.showMaterialBanner(
-        MaterialBanner(
+      messenger.hideCurrentSnackBar();
+      messenger.showSnackBar(
+        SnackBar(
           content: Text('$e'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
-              },
-              child: const Text('OK'),
-            ),
-          ],
+          behavior: SnackBarBehavior.floating,
+          showCloseIcon: true,
         ),
       );
     } finally {
