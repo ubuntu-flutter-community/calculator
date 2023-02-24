@@ -9,7 +9,7 @@ dependencies:
   collection: ^1.16.0
   flutter:
     sdk: flutter
-  handy_window: ^0.2.0
+  handy_window: ^0.3.0
   intl: ^0.17.0
   math_expressions:
     git:
