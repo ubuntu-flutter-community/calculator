@@ -5,7 +5,7 @@ import 'package:yaru/yaru.dart';
 import 'package:yaru_widgets/yaru_widgets.dart';
 
 import 'calculator.dart';
-import 'calculator_page.dart';
+import 'page.dart';
 
 Future<void> main() async {
   await YaruWindowTitleBar.ensureInitialized();
