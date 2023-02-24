@@ -5,7 +5,9 @@ import 'package:yaru_widgets/yaru_widgets.dart';
 
 import 'calculator_page.dart';
 
-void main() {
+Future<void> main() async {
+  await YaruWindowTitleBar.ensureInitialized();
+
   runApp(YaruTheme(
     builder: (context, yaru, child) => MaterialApp(
       theme: yaru.theme,
