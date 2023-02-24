@@ -9,6 +9,8 @@ dependencies:
   collection: ^1.16.0
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   handy_window: ^0.3.0
   intl: ^0.17.0
   math_expressions:
@@ -27,4 +29,5 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  generate: true
   uses-material-design: true
