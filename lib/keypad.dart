@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CalculatorKeypad extends StatelessWidget {
-  const CalculatorKeypad({
+class Keypad extends StatelessWidget {
+  const Keypad({
     super.key,
     required this.onInput,
     required this.onDone,
@@ -20,11 +20,11 @@ class CalculatorKeypad extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 for (final number in ['7', '8', '9'])
-                  CalculatorButton.number(
+                  KeyButton.number(
                     onPressed: () => onInput(number),
                     label: number,
                   ),
-                CalculatorButton.operator(
+                KeyButton.operator(
                   onPressed: () => onInput('/'),
                   label: '/',
                 ),
@@ -36,11 +36,11 @@ class CalculatorKeypad extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 for (final number in ['4', '5', '6'])
-                  CalculatorButton.number(
+                  KeyButton.number(
                     onPressed: () => onInput(number),
                     label: number,
                   ),
-                CalculatorButton.operator(
+                KeyButton.operator(
                   onPressed: () => onInput('*'),
                   label: '*',
                 ),
@@ -52,11 +52,11 @@ class CalculatorKeypad extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 for (final number in ['1', '2', '3'])
-                  CalculatorButton.number(
+                  KeyButton.number(
                     onPressed: () => onInput(number),
                     label: number,
                   ),
-                CalculatorButton.operator(
+                KeyButton.operator(
                   onPressed: () => onInput('+'),
                   label: '+',
                 ),
@@ -67,19 +67,19 @@ class CalculatorKeypad extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                CalculatorButton.number(
+                KeyButton.number(
                   onPressed: () => onInput('0'),
                   label: '0',
                 ),
-                CalculatorButton.operator(
+                KeyButton.operator(
                   onPressed: () => onInput('.'),
                   label: '.',
                 ),
-                CalculatorButton.operator(
+                KeyButton.operator(
                   onPressed: () => onInput('-'),
                   label: '-',
                 ),
-                CalculatorButton(
+                KeyButton(
                   onPressed: onDone,
                   label: '=',
                 ),
@@ -92,39 +92,39 @@ class CalculatorKeypad extends StatelessWidget {
   }
 }
 
-enum CalculatorButtonKind { number, operator }
+enum KeyKind { number, operator }
 
-class CalculatorButton extends StatelessWidget {
-  const CalculatorButton({
+class KeyButton extends StatelessWidget {
+  const KeyButton({
     super.key,
     required this.onPressed,
     required this.label,
     this.kind,
   });
 
-  const CalculatorButton.number({
+  const KeyButton.number({
     super.key,
     required this.onPressed,
     required this.label,
-    this.kind = CalculatorButtonKind.number,
+    this.kind = KeyKind.number,
   });
 
-  const CalculatorButton.operator({
+  const KeyButton.operator({
     super.key,
     required this.onPressed,
     required this.label,
-    this.kind = CalculatorButtonKind.operator,
+    this.kind = KeyKind.operator,
   });
 
   final VoidCallback onPressed;
   final String label;
-  final CalculatorButtonKind? kind;
+  final KeyKind? kind;
 
   Color? backgroundColor(BuildContext context) {
     switch (kind) {
-      case CalculatorButtonKind.number:
+      case KeyKind.number:
         return Theme.of(context).focusColor;
-      case CalculatorButtonKind.operator:
+      case KeyKind.operator:
         return Theme.of(context).hoverColor;
       default:
         return null;

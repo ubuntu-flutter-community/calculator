@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'calculation.dart';
-import 'calculator_keypad.dart';
+import 'keypad.dart';
 import 'calculator.dart';
 
 class CalculatorPage extends StatefulWidget {
@@ -115,7 +115,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       ),
                     ),
                   ),
-                  CalculatorButton.operator(
+                  KeyButton.operator(
                     onPressed: resetCalculator,
                     label: 'C',
                   ),
@@ -126,7 +126,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 2, right: 2, bottom: 2),
-              child: CalculatorKeypad(
+              child: Keypad(
                 onInput: insertText,
                 onDone: () => calculate(_controller.text),
               ),
