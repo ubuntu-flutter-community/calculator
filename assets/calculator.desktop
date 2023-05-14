@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Calculator
+Comment=Calculator example
+Keywords=flutter;yaru;example;
+Exec=calculator
+Terminal=false
+Categories=Example;
