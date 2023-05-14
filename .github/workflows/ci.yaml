@@ -61,7 +61,6 @@ jobs:
       - run: flutter build linux -v
 
   macos:
-    if: ${{false}} ### TODO: add macos support
     runs-on: macos-12
     steps:
       - uses: actions/checkout@v3
