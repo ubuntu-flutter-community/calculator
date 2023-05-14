@@ -105,7 +105,6 @@ jobs:
       - run: flutter build web -v
 
   windows:
-    if: ${{false}} ### TODO: add windows support
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v3
