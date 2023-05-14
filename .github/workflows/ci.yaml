@@ -69,6 +69,18 @@ jobs:
       - run: flutter pub get
       - run: flutter build macos -v
 
+  snap:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: snapcore/action-build@v1
+      id: snapcraft
+    - uses: actions/upload-artifact@v3
+      if: github.event_name == 'workflow_dispatch'
+      with:
+        name: 'snap'
+        path: ${{steps.snapcraft.outputs.snap}}
+
   test:
     runs-on: ubuntu-22.04
     steps:

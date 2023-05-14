@@ -1,0 +1,24 @@
+name: calculator
+version: git
+summary: Calculator
+description: Calculator example
+confinement: strict
+base: core22
+grade: stable
+license: GPL-3.0+
+architectures:
+  - build-on: amd64
+    build-for: amd64
+  - build-on: arm64
+    build-for: arm64
+
+parts:
+  calculator:
+    plugin: flutter
+    source: .
+
+apps:
+  calculator:
+    command: calculator
+    desktop: data/flutter_assets/assets/calculator.desktop
+    extensions: [gnome]
